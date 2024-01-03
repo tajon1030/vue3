@@ -1,9 +1,6 @@
 <template>
-  <AppHeader></AppHeader>
-  <div>
-    {{ msg }}
-  </div>
-  <button @click="showAlert">경고</button>
+  <AppHeader v-bind:appTitle="msg"
+  v-on:change="changeTitle"></AppHeader>
 </template>
 
 <script>
@@ -26,6 +23,9 @@
     methods :{
       showAlert(){
         alert('hello');
+      },
+      changeTitle(){
+        this.msg = '클릭'
       }
     }
   }

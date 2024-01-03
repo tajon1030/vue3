@@ -1,12 +1,18 @@
 <template>
     <div>
-        <h1>헤더</h1>
+        <h1>{{ appTitle }}</h1>
+        <button @click="changeTitle">클릭</button>
     </div>
 </template>
 
 <script>
     export default {
-    
+        props: ['appTitle'],
+        methods : {
+            changeTitle(){
+                this.$emit('change')
+            }
+        }
     }
 </script>
 
