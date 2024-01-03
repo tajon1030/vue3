@@ -15,29 +15,47 @@
 <script>
 // import 라이브러리명 from '패키지이름'
   import axios from 'axios'
+import { ref } from 'vue';
 
   export default {
-    data() {
-      return {
-        usrname: '',
-        pwd: ''
-      }
-    },
-    methods : {
-      submitForm(){
-//        event.preventDefault(); // $submit.prevent로 대체 (form submit의 기본동작 reload)
+    setup(){
+      // data
+      var usrname = ref('');
+      var pwd = ref('');
 
-        const data = {
-          username: this.usrname,
-          password: this.pwd,
-        }
-        axios.post('https://jsonplaceholder.typicode.com/users', data) // sampleAPI:jsonplaceholder
-          .then(response => {
-            console.log(response);
-          })
-//        console.log('제출됨');
+      //methods
+      var submitForm = () => {
+        axios.post('https://jsonplaceholder.typicode.com/users',{
+          username: usrname.value,
+          password: pwd.value
+        }).then(response=>{
+          console.log(response);
+        })
       }
+
+      return {usrname, pwd, submitForm}
     }
+//     data() {
+//       return {
+//         usrname: '',
+//         pwd: ''
+//       }
+//     },
+//     methods : {
+//       submitForm(){
+// //        event.preventDefault(); // $submit.prevent로 대체 (form submit의 기본동작 reload)
+
+//         const data = {
+//           username: this.usrname,
+//           password: this.pwd,
+//         }
+//         axios.post('https://jsonplaceholder.typicode.com/users', data) // sampleAPI:jsonplaceholder
+//           .then(response => {
+//             console.log(response);
+//           })
+// //        console.log('제출됨');
+//       }
+//     }
   }
 </script>
 
